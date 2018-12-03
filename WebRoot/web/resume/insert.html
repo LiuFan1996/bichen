@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"> <!-- for HTML5 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="/bichen/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/bichen/css/main.css"/>
+    <style type="text/css">
+    	.wenzhengul{
+    	 	display: block;
+    	
+    	}
+    	.wenzhengul li{
+    		list-style: none;
+    		display: block;
+    		height: 40px;
+    		width: 380px;
+    		float: left;
+    		text-align: center;
+    		border-right: 1px solid #ccc; 
+    	}
+    	.wenzhengul li a{
+    		color: black;
+    		font-size: 15px;
+    		line-height: 40px;
+    	}
+    </style>
+</head>
+<body>
+<div class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
+            <ul class="navbar-list clearfix">
+                <li><a class="on" href="index.html">首页</a></li>
+                <li><a href="#" target="_blank">网站首页</a></li>
+            </ul>
+        </div>
+        <div class="top-info-wrap">
+            <ul class="top-info-list clearfix">
+                <li><a href="#">管理员</a></li>
+                <li><a href="#">修改密码</a></li>
+                <li><a href="javascript:;" onclick="quit();">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-list">
+                <li>
+                    <a href="../article/insert.html"><i class="icon-font"></i>文章管理</a>
+                    <a href="../rinfo/insert.html"><i class="icon-font"></i>招聘管理</a>
+                    <a href="../resume/insert.html"><i class="icon-font"></i>简历管理</a>
+                    <a href="../user/insert.html"><i class="icon-font"></i>用户管理</a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+			  <ul class="wenzhengul">
+                        <li><a href="../resume/insert.html" style="color: #ccc" ><i class="icon-font"></i>新增简历</a></li>
+                        <li><a href="../resume/delete.html"><i class="icon-font"></i>删除简历</a></li>
+                        <li><a href="../resume/update.html"><i class="icon-font"></i>更新简历</a></li>
+            </ul>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="" method="post" id="myform"  accept-charset="UTF-8" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody><tr>
+                            <th width="120"><i class="require-red">*</i>姓名：</th>
+                            <td>
+                            <input class="common-text required" id="name" name="name"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>项目经验：</th>
+                            <td>
+                            <input class="common-text required" id="projectHistory"name="projectHistory"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>工作经历：</th>
+                                <td>
+                                    <input class="common-text required" id="workHistory" name="workHistory" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>薪资：</th>
+                                <td><input class="common-text" id="salary"name="salary" size="50" value="10000" type="text"></td>
+                            </tr>
+                            <tr>
+                            <th width="120"><i class="require-red">*</i>想要找的岗位：</th>
+                            <td>
+                            <input class="common-text required" id="wantJob"name="wantJob"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                            <tr>
+                                <th>自我评价：</th>
+                                <td><textarea name="selfAssessment" class="common-textarea" id="selfAssessment" cols="30" style="width: 40%;" rows="10"></textarea></td>
+                            </tr>
+                            <tr>
+                            <th width="120"><i class="require-red">*</i>备注：</th>
+                            <td>
+                            <input class="common-text required" id="remarks"name="remarks"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" onclick="insert();">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+  <!--/main-->
+</div>
+<script  src="../../js/jquery-3.3.1.min.js"></script>
+		<script  src="../../js/jQuery-from.js"></script>
+		<script type="text/javascript">
+ 
+function insert(){
+
+			
+			var name=document.getElementById("name").value;
+			var projectHistory=document.getElementById("projectHistory").value;
+			var workHistory=document.getElementById("workHistory").value;
+			var salary=document.getElementById("salary").value;
+			var wantJob=document.getElementById("wantJob").value;
+			var selfAssessment=document.getElementById("selfAssessment").value;
+			var remarks=document.getElementById("remarks").value;
+			if(name==""||projectHistory==""||workHistory==""||salary==""||wantJob==""||selfAssessment==""||remarks==""){
+					alert("数据不能为空");
+					return;
+				}
+			console.log(document.getElementById("name"));
+			$.post(
+					"../../insert.dor?",
+					 { "name": name, "projectHistory": projectHistory,"workHistory": workHistory,"salary": salary,"wantJob": wantJob,"selfAssessment": selfAssessment,"remarks": remarks },
+					 function(data){ 
+						  console.log(data);
+						  if(data==1){ 
+							  alert("简历插入成功");
+							  location="insert.html";
+						  }else{ 
+							  alert("简历插入失败");
+						  }
+					  } );
+			}
+		
+		
+		/* show();                                                                                                 	
+		 function show(){
+			 $("#myform").ajaxForm(function(data){  
+					console.log(data);
+					var json = eval("("+data+")");
+					console.log(json.message);
+					if(json.message ==  "success"){
+						alert("提交成功！");   
+					}else{
+						alert("提交失败！");   
+						}
+				}); 
+			 }*/
+			  function quit(){
+				 $.post(
+				 "../../quit.do?",
+				 function(data){
+				 if(data==1){
+				 alert("尊敬的管理员，您已经成功退出");
+				 location="../admin.html";
+				 
+				 }
+				 
+				 }
+				 )
+				 
+				 }
+		</script>
+</body>
+</html>

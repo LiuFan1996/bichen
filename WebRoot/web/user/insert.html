@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+    <style type="text/css">
+    	.wenzhengul{
+    	 	display: block;
+    	
+    	}
+    	.wenzhengul li{
+    		list-style: none;
+    		display: block;
+    		height: 40px;
+    		width: 380px;
+    		float: left;
+    		text-align: center;
+    		border-right: 1px solid #ccc; 
+    	}
+    	.wenzhengul li a{
+    		color: black;
+    		font-size: 15px;
+    		line-height: 40px;
+    	}
+    </style>
+</head>
+<body>
+<div class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
+            <ul class="navbar-list clearfix">
+                <li><a class="on" href="index.html">首页</a></li>
+                <li><a href="#" target="_blank">网站首页</a></li>
+            </ul>
+        </div>
+        <div class="top-info-wrap">
+            <ul class="top-info-list clearfix">
+                <li><a href="#">管理员</a></li>
+                <li><a href="#">修改密码</a></li>
+                 <li><a href="javascript:;" onclick="quit();">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-list">
+                <li>
+                    <a href="../article/insert.html"><i class="icon-font"></i>文章管理</a>
+                    <a href="../rinfo/insert.html"><i class="icon-font"></i>招聘管理</a>
+                    <a href="../resume/insert.html"><i class="icon-font"></i>简历管理</a>
+                    <a href="../user/insert.html"><i class="icon-font"></i>用户管理</a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+			  <ul class="wenzhengul">
+                        <li><a href="../user/insert.html" style="color: #ccc" ><i class="icon-font"></i>新增用户</a></li>
+                        <li><a href="../user/delete.html"><i class="icon-font"></i>删除用户</a></li>
+                        <li><a href="../user/update.html"><i class="icon-font"></i>更新用户</a></li>
+            </ul>
+            
+            <!--
+            	private int id;
+	private String company; // 公司名称
+	private String email; // 邮箱
+	private String job; // 职位
+	private String education;// 学历
+	private String username;// 姓名
+	private String nickname; // 昵称
+	private String password; // 密码
+	private int userIntegral; // 用户级别:VIP 普通用户
+	private char isEmailVerify; // 是否邮箱验证
+	private String emailVerifyCode; // 邮箱验证码
+	private Date lastLoginTime; // 最后一次登录时间
+	private String lastLoginIp; // 最后一次登录地址
+            -->
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                        	
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>姓名：</th>
+                            <td>
+                            <input class="common-text required" id="username"name="username"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                        	
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>昵称：</th>
+                            <td>
+                            <input class="common-text required" id="nickname"name="nickname"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                        	
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>密码：</th>
+                            <td>
+                            <input class="common-text required" id="password"name="password"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                         	
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>公司名称：</th>
+                            <td>
+                            <input class="common-text required" id="company"name="company"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                                <th><i class="require-red">*</i>学历：</th>
+                                <td>
+                                	 <select name="education" id="fenleiId" class="required">
+                                	  	<option value="">请选择</option>
+                                	 	<option value="高中及以上">高中及以上</option>
+                                	  	<option value="大专及以上">大专及以上</option>
+                                	   	<option value="本科及以上">本科及以上</option>
+                                	    <option value="硕士及以上">高中及以上</option>
+                                	</select>
+                                </td>
+                         </tr>
+                         
+                        	<tr>
+                            <th width="120"><i class="require-red">*</i>邮箱：</th>
+                            <td>
+                            <input class="common-text required" id="email"name="email"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th><i class="require-red">*</i>职位：</th>
+                            <td>
+                                    <input class="common-text required" id="job" name="job" size="50" value="" type="text">
+                            </td>
+                        </tr>
+                            
+                         <tr>
+                                <th><i class="require-red">*</i>用户级别：</th>
+                                <td>
+                                	 <select name="userIntegral" id="fenleiId1" class="required">
+                                	    <option value="">请选择</option>
+                                	 	<option value="0">0</option>
+                                	 	<option value="1">1</option>
+                                	  	<option value="2">2</option>
+                                	    <option value="3">3</option>
+                                	    <option value="4">4</option>
+                                	    <option value="5">5</option>
+                                	</select>
+                                </td>
+                            </tr>    
+                             <tr>
+                                <th><i class="require-red">*</i>是否邮箱验证：</th>
+                                <td>
+                                	 <select name="isEmailVerify" id="fenleiId2" class="required">
+                                	  	<option value="">请选择</option>
+                                	 	<option value="是">是</option>
+                                	  	<option value="否">否</option>
+                                	</select>
+                                </td>
+                         </tr>
+                        
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>邮箱验证码：</th>
+                            <td>
+                            <input class="common-text required" id="emailVerifyCode"name="emailVerifyCode"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                            
+                            <tr>
+                                <th width="130">最后一次登录地址：</th>
+                                <td><input class="common-text" id="lastLoginIp"name="lastLoginIp" size="50" value="" type="text"></td>
+                            </tr>
+                            
+                            <tr>
+                                <th></th>
+                                <td>
+                                   <input class="btn btn-primary btn6 mr10" value="提交" onclick="insert();">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    
+    <!--/main-->
+</div>
+		<script  src="../../js/jquery-3.3.1.min.js"></script>
+		<script  src="../../js/jQuery-from.js"></script>
+		<script type="text/javascript">
+		/*
+    <!--
+            	private int id;
+	private String company; // 公司名称
+	private String email; // 邮箱
+	private String job; // 职位
+	private String education;// 学历
+	private String username;// 姓名
+	private String nickname; // 昵称
+	private String password; // 密码
+	private int userIntegral; // 用户级别:VIP 普通用户
+	private char isEmailVerify; // 是否邮箱验证
+	private String emailVerifyCode; // 邮箱验证码
+	private Date lastLoginTime; // 最后一次登录时间
+	private String lastLoginIp; // 最后一次登录地址
+            -->
+    
+    */
+		function insert(){
+		
+		var company=document.getElementById("company").value;
+		var email=document.getElementById("email").value;
+		var job=document.getElementById("job").value;
+		var education=document.getElementById("fenleiId").value;
+		var username=document.getElementById("username").value;
+		var nickname=document.getElementById("nickname").value;
+		var password=document.getElementById("password").value;
+		var userIntegral=document.getElementById("fenleiId1").value;
+		var isEmailVerify=document.getElementById("fenleiId2").value; 
+		var emailVerifyCode=document.getElementById("emailVerifyCode").value; 
+		var lastLoginIp=document.getElementById("lastLoginIp").value; 
+		if(company==""||email==""||job==""||education==""||username==""||nickname==""||password==""||userIntegral==""||isEmailVerify==""||emailVerifyCode==""||lastLoginIp==""){
+				alert("数据不能为空");
+				return;
+			}
+		//console.log(document.getElementById("classify"));
+		$.post(
+				"../../insert.dou?",
+				 { "company": company, "email": email,"job": job,"education": education,"username":username,"nickname":nickname,"password":password,"userIntegral":userIntegral ,"isEmailVerify":isEmailVerify,"emailVerifyCode":emailVerifyCode,"lastLoginIp":lastLoginIp},
+				 function(data){ 
+					  console.log(data);
+					  if(data==1){ 
+						  alert("用户插入成功");
+						  location="insert.html";
+					  }else{ 
+						  alert("用户插入失败");
+					  }
+				  } );
+		}
+		/*console.log("ssssssssssss");
+		 show();                                                                                                 	
+		 function show(){
+			 $("#myform").ajaxForm(function(data){  
+					console.log(data);
+					var json = eval("("+data+")");
+					console.log(json.message);
+					if(json.message ==  "success"){
+						alert("提交成功！");   
+					}else{
+						alert("提交失败！");   
+						}
+				}); 
+			 }*/
+			 
+			 	 function quit(){
+				 $.post(
+				 "../../quit.do?",
+				 function(data){
+				 if(data==1){
+				 alert("尊敬的管理员，您已经成功退出");
+				 location="../admin.html";
+				 
+				 }
+				 
+				 }
+				 )
+				 
+				 }
+		</script>
+</body>
+</html>

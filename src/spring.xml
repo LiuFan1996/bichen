@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           ">
+           <!-- 加载外部属性文件 -->
+		<context:property-placeholder location="classpath:db.properties"/>
+	
+		<!-- 加载jdbc数据源 -->
+		<bean id="dataSources" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="${driverClass}"></property>	
+			<property name="url" value="${url}"></property>	
+			<property name="username" value="${user}"></property>	
+			<property name="password" value="${password}"></property>			
+		</bean>
+		
+		<!-- 获取数据库模板类模板对象 -->
+		<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<!--属性注入，注入数据源  -->
+		<property name="dataSource" ref="dataSources"></property>
+		</bean>
+		
+	 		<!-- 配置组件 扫描区域 -->
+           <context:component-scan base-package="bean">
+           </context:component-scan>
+            <context:component-scan base-package="dao">
+           </context:component-scan>
+            <context:component-scan base-package="web">
+           </context:component-scan>
+           	<context:annotation-config></context:annotation-config>
+           <!-- 启用aspect 注解：生效 -->
+           <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+           
+           <!-- 加载事务管理-->
+     	<bean id="tx" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+     		<property name="dataSource" ref="dataSources"></property>
+     	</bean>
+     	<!--   基于注解 
+          <tx:annotation-driven transaction-manager="tx"/>-->
+          
+          <!-- 基于xml配置事务 -->
+          	<tx:advice id="txadvice" transaction-manager="tx">
+          	<!-- 指明哪些方法上添加事务的增强方案 -->
+          	<tx:attributes>
+          		<tx:method name="buy"/>
+          	</tx:attributes>
+          	</tx:advice>
+          	
+          	<!-- 配置Aop -->
+          	<aop:config >
+          	<!-- 配置切点表达式 -->
+          	<aop:pointcut expression="execution(* com.lf.service.*.*(..))" id="pointcut"/>
+          	<!-- 配置事务增强方案 相当于是切面-->
+          	<aop:advisor advice-ref="txadvice" order="1" pointcut-ref="pointcut"/>
+          	</aop:config>
+          	
+          
+           
+</beans>

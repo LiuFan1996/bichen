@@ -1,0 +1,156 @@
+/**
+ *全局样式+index.html 
+ */
+body{
+	font-family: Tahoma,Helvetica,Arial,'宋体',sans-serif;
+}
+@font-face {
+	font-family:bitcity;
+	src: url("../fonts/footer/icomoon.eto") format("embedded-opentype"),
+	     url("../fonts/footer/icomoon.svg") format("svg"),
+	     url("../fonts/footer/icomoon.ttf") format("truetype"),
+	     url("../fonts/footer/icomoon.woff") format('woof');
+}
+[class*="font-"]{
+	font-family: bitcity;
+	font-style: normal;
+	font-size: 20px;
+}
+.font-index::after{
+	font-family: bitcity;
+	content: "\e902";
+}
+.font-fast::after{
+	font-family: bitcity;
+	content: "\e949";
+}
+.font-all::after{
+	font-family: bitcity;
+	content: "\e9de";
+}
+.font-message::after{
+	font-family: bitcity;
+	content: "\e96e";
+}
+.font-self::after{
+	font-family: bitcity;
+	content: "\e971";
+}
+.col-md-1-5 {
+	width: 20%;
+	float: left;
+}
+
+.col-xs-1-5,.col-sm-1-5,.col-md-1-5,.col-lg-1-5 {
+	min-height: 1px;
+	padding-left: 15px;
+	padding-right: 15px;
+	position: relative;
+}
+.active-font{
+	color:deepskyblue;
+}
+@media (min-width: 768px) {
+	.col-sm-1-5 {
+	width: 20%;
+	float: left;
+	}
+}
+
+@media (min-width: 992px) {
+	.col-md-1-5 {
+	width: 20%;
+	float: left;
+	}
+}
+
+@media (min-width: 1200px) {
+	.col-lg-1-5 {
+	width: 20%;
+	float: left;
+	}
+}
+.pad{
+	padding: 0px;
+	margin:0px;
+}
+
+.header>div>span:nth-child(1){
+	font-family:"SimSun";
+	font-size: 16px;
+	line-height: 0px;
+	padding-top: 40px;
+	padding-bottom:25px;
+	padding-left: 20px;;
+	color: #ccc;
+	font-weight:lighter; 
+}
+.header>div>span:nth-of-type(2){
+	font-size: 16px;
+	line-height: 0px;
+	padding-top: 40px;
+	padding-bottom: 25px;
+	color: #E2E2E2;  
+}
+.header>div>form{
+	display: none;
+	margin-top:20px;
+	margin-bottom: 0px;
+	padding: 0px;
+	box-shadow: none;
+	border: none;
+}
+.navbar-form{
+	border:none;
+}
+.headline{
+	padding: 0px;
+	display: inline-block;
+	font-size: 20px;
+	line-height: 35px;
+	margin-top: 30px;
+	color:#ccc; 
+}
+.bodys{
+	margin-top: 70px;
+}
+.p{
+	padding: 5px 5px;
+	background: #DCDCDC;
+}
+#img{
+	width: 100%;
+	height: 200px;
+	margin:0 auto;
+}
+.panel-footer{
+	overflow: hidden;
+}
+.content{
+	height:150px;
+}
+.content-img{
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+.content-img img{
+	width:160px;
+	height: 145px;	
+}
+.content-para p{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 140px;
+}
+.footer>ul>li>a{
+	padding:10px 0px 0px;
+	text-decoration: none;
+}
+/*底部光晕效果*/
+.footer{
+	box-shadow:0 -1px 3px deepskyblue;
+}
+.pulldown>p{
+	margin-bottom: 75px;
+}
+

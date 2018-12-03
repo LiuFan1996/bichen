@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="/bichen/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/bichen/css/main.css"/>
+    <style type="text/css">
+    	.wenzhengul{
+    	 	display: block;
+    	
+    	}
+    	.wenzhengul li{
+    		list-style: none;
+    		display: block;
+    		height: 40px;
+    		width: 380px;
+    		float: left;
+    		text-align: center;
+    		border-right: 1px solid #ccc; 
+    	}
+    	.wenzhengul li a{
+    		color: black;
+    		font-size: 15px;
+    		line-height: 40px;
+    	}
+    </style>
+</head>
+<body>
+<div class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
+            <ul class="navbar-list clearfix">
+                <li><a class="on" href="index.html">首页</a></li>
+                <li><a href="#" target="_blank">网站首页</a></li>
+            </ul>
+        </div>
+        <div class="top-info-wrap">
+            <ul class="top-info-list clearfix">
+                <li><a href="#">管理员</a></li>
+                <li><a href="#">修改密码</a></li>
+                <li><a href="javascript:;" onclick="quit();">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-list">
+               <li>
+                    <a href="../article/insert.html"><i class="icon-font"></i>文章管理</a>
+                    <a href="../rinfo/insert.html"><i class="icon-font"></i>招聘管理</a>
+                    <a href="../resume/insert.html"><i class="icon-font"></i>简历管理</a>
+                    <a href="../user/insert.html"><i class="icon-font"></i>用户管理</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!--/sidebar-->
+    <div class="main-wrap">
+	 <ul class="wenzhengul">
+                        <li><a href="../rinfo/insert.html"><i class="icon-font"></i>新增招聘信息</a></li>
+                        <li><a href="../rinfo/delete.html" style="color: #ccc"><i class="icon-font"></i>删除招聘信息</a></li>
+                        <li><a href="../rinfo/update.html"><i class="icon-font"></i>更新招聘信息</a></li>
+            </ul>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                        <tr>
+                            <th width="120"><i class="require-red" id="" >*</i>选择删除项：</th>
+                            <td>
+                                <select name="Id" id="employeeName" class="required" onclick="showIDandTitle();">
+                                </select>
+                            </td>
+                        </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="删除" onclick="deletearticle();">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+	
+	<script type="text/javascript" src="../../js/jquery-1.8.3.min.js"></script>
+	<script  src="../../js/jQuery-from.js"></script>
+	<script type="text/javascript">
+	var bool=true;
+	var employeeObj=document.getElementById('employeeName');//下拉框组件
+	function deletearticle(){
+		var Id=document.getElementById("employeeName").value;
+		console.log(Id);
+		$.post(
+				"../../delete.don?",
+				 { "Id": Id },
+				 function(data){ 
+					  console.log(data);
+					  if(data==1){ 
+						  alert("删除成功");
+						  bool=true;
+						  employeeObj.innerHTML="";
+						  showIDandTitle();
+					  }else{ 
+						  alert("删除失败");
+					  }
+				  } );
+
+		}
+	function showIDandTitle(){
+	if(bool){
+	
+	var arr=$.ajax({
+	url:"../../selectall.don?",
+	dateType:"jsonp",
+	success:function(datejson){
+		console.log(datejson);
+	var arr=eval(datejson);
+	for(let i=0;i<arr.length;i++){
+		
+			var option=document.createElement("option");
+				option.value =arr[i].id;
+				option.innerHTML = arr[i].id+":"+arr[i].company+"  "+arr[i].jobRequirements;
+				employeeObj.appendChild(option);
+				console.log("hello");
+				bool=false;
+			}
+	}
+	});
+	}
+}
+				 function quit(){
+				 $.post(
+				 "../../quit.do?",
+				 function(data){
+				 if(data==1){
+				 alert("尊敬的管理员，您已经成功退出");
+				 location="../admin.html";
+				 
+				 }
+				 
+				 }
+				 )
+				 
+				 }
+	</script>
+
+</body>
+</html>

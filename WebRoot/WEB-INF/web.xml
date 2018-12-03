@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+  <servlet-name>admin</servlet-name>
+  <servlet-class>web.AdminServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>admin</servlet-name>
+  <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <filter>
+  <filter-name>admins</filter-name>
+  <filter-class>filter.AdminFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  <filter-name>admins</filter-name>
+  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 过滤器 请求配置:拦截 -->
+    <filter>
+      <filter-name>logins</filter-name>
+      <filter-class>filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+      <filter-name>logins</filter-name>
+      <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+      <filter-mapping>
+      <filter-name>logins</filter-name>
+      <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+      <filter-name>logins</filter-name>
+      <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+      <filter-name>logins</filter-name>
+      <url-pattern>*.dor</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+      <filter-name>logins</filter-name>
+      <url-pattern>*.dou</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+      <filter-name>logins</filter-name>
+      <url-pattern>*.don</url-pattern>
+    </filter-mapping>
+ 
+  <!-- 注册所有servlet -->
+  
+  <servlet>
+  <servlet-name>Articleall</servlet-name>
+  <servlet-class>web.ArticleAllServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Articleall</servlet-name>
+  <url-pattern>*.doa</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>UserAll</servlet-name>
+  <servlet-class>web.UserAllServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>UserAll</servlet-name>
+  <url-pattern>*.dou</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>ResumeAll</servlet-name>
+  <servlet-class>web.ResumeAllServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>ResumeAll</servlet-name>
+  <url-pattern>*.dor</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>RecruitmentInfoAll</servlet-name>
+  <servlet-class>web.RecruitmentInfoAllServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>RecruitmentInfoAll</servlet-name>
+  <url-pattern>*.don</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

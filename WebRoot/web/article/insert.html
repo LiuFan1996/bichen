@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"> <!-- for HTML5 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+    <style type="text/css">
+    	.wenzhengul{
+    	 	display: block;
+    	
+    	}
+    	.wenzhengul li{
+    		list-style: none;
+    		display: block;
+    		height: 40px;
+    		width: 380px;
+    		float: left;
+    		text-align: center;
+    		border-right: 1px solid #ccc; 
+    	}
+    	.wenzhengul li a{
+    		color: black;
+    		font-size: 15px;
+    		line-height: 40px;
+    	}
+    </style>
+</head>
+<body>
+<div class="topbar-wrap white">
+    <div class="topbar-inner clearfix">
+        <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
+            <ul class="navbar-list clearfix">
+                <li><a class="on" href="index.html">首页</a></li>
+                <li><a href="#" target="_blank">网站首页</a></li>
+            </ul>
+        </div>
+        <div class="top-info-wrap">
+            <ul class="top-info-list clearfix">
+                <li><a href="#">管理员</a></li>
+                <li><a href="#">修改密码</a></li>
+               <li><a href="javascript:;" onclick="quit();">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-list">
+                <li>
+                    <a href="insert.html"><i class="icon-font"></i>文章管理</a>
+                    <a href="../rinfo/insert.html"><i class="icon-font"></i>招聘管理</a>
+                    <a href="../resume/insert.html"><i class="icon-font"></i>简历管理</a>
+                    <a href="../user/insert.html"><i class="icon-font"></i>用户管理</a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+			  <ul class="wenzhengul">
+                        <li><a href="../article/insert.html" style="color: #ccc" ><i class="icon-font"></i>新增文章</a></li>
+                        <li><a href="../article/delete.html"><i class="icon-font"></i>删除文章</a></li>
+                        <li><a href="../article/update.html"><i class="icon-font"></i>更新文章</a></li>
+            </ul>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="" method="post" id="myform"  accept-charset="UTF-8" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody><tr>
+                            <th width="120"><i class="require-red">*</i>分类：</th>
+                            <td>
+                            <input class="common-text required" id="classify"name="classify"  size="50" value="" type="text">
+                            </td>
+                        </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>标题：</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="title" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>作者：</th>
+                                <td><input class="common-text" name="writer" id="writer"  size="50" value="admin" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>缩略图：</th>
+                                <td><input name="image " id="" type="file"><!--<input type="submit" onclick="submitForm('/jscss/admin/design/upload')" value="上传图片"/>--></td>
+                            </tr>
+                            <tr>
+                                <th>内容：</th> 
+                                <td><textarea name="body"  id ="body"class="common-textarea" cols="30" style="width: 98%;" rows="10"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" onclick="insert();">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+		<script  src="../../js/jquery-3.3.1.min.js"></script>
+		<script  src="../../js/jQuery-from.js"></script>
+		<script type="text/javascript">
+		function insert(){
+			
+			var classify=document.getElementById("classify").value;
+			var title=document.getElementById("title").value;
+			var writer=document.getElementById("writer").value;
+			var body=document.getElementById("body").value;
+			if(classify==""||title==""||writer==""||body==""){
+					alert("数据不能为空");
+					return;
+				}
+			console.log(document.getElementById("classify"));
+			$.post(
+					"../../insert.doa?",
+					 { "classify": classify, "title": title,"writer": writer,"body": body },
+					 function(data){ 
+						  console.log(data);
+						  if(data==1){ 
+							  alert("文章插入成功");
+						  }else{ 
+							  alert("文章插入失败");
+						  }
+					  } );
+			}
+		
+		
+		/* show();                                                                                                 	
+		 function show(){
+			 $("#myform").ajaxForm(function(data){  
+					console.log(data);
+					var json = eval("("+data+")");
+					console.log(json.message);
+					if(json.message ==  "success"){
+						alert("提交成功！");   
+					}else{
+						alert("提交失败！");   
+						}
+				}); 
+			 }*/
+			  function quit(){
+				 $.post(
+				 "../../quit.do?",
+				 function(data){
+				 if(data==1){
+				 alert("尊敬的管理员，您已经成功退出");
+				 location="../admin.html";
+				 
+				 }
+				 
+				 }
+				 )
+				 
+				 }
+		</script>
+</body>
+</html>
